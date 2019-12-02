@@ -21,6 +21,14 @@ h1 {
     width: 150px;
     height: 150px;
     margin: 0;
+    text-align: center;
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.square:hover {
+    border: 3px solid red;
+    background-color: peachpuff;
 }
 
 #resetBtn {
@@ -32,4 +40,9 @@ h1 {
     border: 2px solid darkgray;
     font-size: 25px;
     margin: 20px auto;
+}
+
+#resetBtn:hover {
+    background-color: darkblue;
+    cursor: pointer;
 }

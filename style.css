@@ -1,4 +1,35 @@
 body {
-    background-color: darkorange;
+    background-color: darksalmon;
 }
 
+h1 {
+    text-align: center;
+}
+
+.board {
+    width: 470px;
+    height: 470px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 100px auto;
+}
+.square {
+    background-color: lavenderblush;
+    border: 3px solid black;
+    width: 150px;
+    height: 150px;
+    margin: 0;
+}
+
+#resetBtn {
+    background-color: darkred;
+    color: ivory;
+    text-align: center;
+    height: 50px;
+    width: 100px;
+    border: 2px solid darkgray;
+    font-size: 25px;
+    margin: 20px auto;
+}

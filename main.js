@@ -6,8 +6,8 @@ gamestart.start();
 function GameStart() {
     //create varibles for board and players
     const board = new Board();
-    const player1 = new Player();
-    const player2 = new Player();
+    const player1 = new Player(board);
+    const player2 = new Player(board);
     //Create way to keep track of turn in game
     let turn = 0;
     
@@ -17,12 +17,12 @@ function GameStart() {
         const observer = new MutationObserver(() => takeTurn());
         
         // Make a way to observe board positions
-        board.positions.forEach((el) => observer.observe(el, changes));
+        board.positions.forEach((Element) => observer.observe(Element, changes));
         takeTurn();
     }
     // Create new function for takeTurn
     function takeTurn() {
-        console.log("change");
+        //console.log("change");
         // Create if else statement to determined whose turn it is
         if (turn % 2 === 0) {
             player1.takeTurn();
@@ -41,9 +41,20 @@ function Board() {
     console.log(this.positions);
 }
 
-function Player() {
+function Player(board) {
     // Need to create function for each players turn
     this.takeTurn = function() {
-        console.log("player1 turn");
+        //console.log("player1 turn");
+        // Add eventlistener to be able to take turns
+        board.positions.forEach(Element => Element.addEventListener('click', handleTurn))
+
+                 
+    }
+    function handleTurn() {
+        //console.log("turn taken")
+            // create a way to log which square is clicked
+            event.target.style.background = 'blue';
+            // remove eventlistener after each turn is take to prevent change in squares
+            board.positions.forEach(Element => Element.removeEventListener('click', handleTurn));
     }
 }

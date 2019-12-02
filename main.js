@@ -26,7 +26,7 @@ function GameStart() {
         // Create if else statement to determined whose turn it is
         if (turn % 2 === 0) {
             player1.takeTurn();
-        }else {
+        }else  {
             player2.takeTurn();
         }
 
@@ -45,16 +45,22 @@ function Player(board) {
     // Need to create function for each players turn
     this.takeTurn = function() {
         //console.log("player1 turn");
-        // Add eventlistener to be able to take turns
-        board.positions.forEach(Element => Element.addEventListener('click', handleTurn))
-
+        // Add eventlistener to be able to take turns for each player
+        board.positions.forEach(Element => Element.addEventListener('click', p1Turn))
                  
     }
-    function handleTurn() {
+    function p1Turn() {
         //console.log("turn taken")
             // create a way to log which square is clicked
-            event.target.style.background = 'blue';
+            player1 = event.target.style.background = 'blue';
+            console.log(board.position)
             // remove eventlistener after each turn is take to prevent change in squares
-            board.positions.forEach(Element => Element.removeEventListener('click', handleTurn));
+            board.positions.forEach(Element => Element.addEventListener('click', p2Turn));
     }
+    function p2Turn(){
+        player2 = event.target.style.background = 'red';
+        board.positions.forEach(Element => Element.removeEventListener('click', p2Turn));
+        
+    }
+
 }

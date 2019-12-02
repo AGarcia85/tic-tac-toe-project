@@ -23,6 +23,10 @@ function GameStart() {
     // Create new function for takeTurn
     function takeTurn() {
         //console.log("change");
+        // Need way to check for winner
+        if (board.checkForWinner()) {
+            return;
+        }
         // Create if else statement to determined whose turn it is
         if (turn % 2 === 0) {
             player1.takeTurn();
@@ -39,6 +43,27 @@ function Board() {
     // Create positions on the board
     this.positions = Array.from(document.querySelectorAll(".square"));
     console.log(this.positions);
+    // checking for winner
+    // 0 1 2
+    // 3 4 5
+    // 6 7 8
+    this.checkForWinner = function (){
+        // start with no winner when game starts
+        let winner = false;
+        // store winning combos as an array within an array
+        const winCombos = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
+        const positions = this.positions;
+    }
 }
 
 function Player(board) {
@@ -50,14 +75,15 @@ function Player(board) {
                  
     }
     function p1Turn() {
-        //console.log("turn taken")
+        console.log("Player2 turn");
             // create a way to log which square is clicked
             player1 = event.target.style.background = 'blue';
-            console.log(board.position)
+            
             // remove eventlistener after each turn is take to prevent change in squares
             board.positions.forEach(Element => Element.addEventListener('click', p2Turn));
     }
     function p2Turn(){
+        console.log("Player1 turn");
         player2 = event.target.style.background = 'red';
         board.positions.forEach(Element => Element.removeEventListener('click', p2Turn));
         
